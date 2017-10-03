@@ -1,0 +1,26 @@
+{
+  "name": "burger",
+  "version": "0.0.1",
+  "description": "Eat The Burger App",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickallenjr/Burger.git"
+  },
+  "author": "Nicholas Allen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickallenjr/Burger/issues"
+  },
+  "homepage": "https://github.com/nickallenjr/Burger#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.10",
+    "mysql": "^2.14.1"
+  }
+}

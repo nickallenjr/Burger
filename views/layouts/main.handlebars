@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+		<!--<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />-->
+		<title>Eat That Burger!</title>
+		<!--<style type="text/css">
+			body {
+				background-color: yellow;
+			}
+		</style>-->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<!--<script src="/assets/js/cats.js"></script>-->
+	</head>
+	<body>
+		{{{ body }}}
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			var queryURL = "https://api.giphy.com/v1/gifs/AAfpHO80onDYk?api_key=0c5819fa57304ec4942fc15c16f31c35";
+
+			$.ajax({
+				url: queryURL,
+				method: "GET"
+			}).done(function(response) {
+				var still = response.data.images.original_still.url;
+				var animate = response.data.images.original.url;
+				$('.image').append("<img class='img' style='height: 335px; width: 335px;' data-still='" + still + "' data-animate='" + animate + "' data-state='still' src='" + still + "'>")
+			});
+
+			$('.create-form').on('submit', function(event) {
+			    event.preventDefault();
+
+			   var newBurger = {
+					name: $('#burg').val().trim(),
+			    }
+
+				$.ajax('/api/burgers', {
+					type: 'POST',
+					data: newBurger,
+					success: function() {
+						console.log('adding burger')
+					}
+				});
+				location.reload();
+			})
+
+			$('.change-devour').on('click', function(event) {
+				var id = $(this).data('id');
+				var updateDevour = $(this).data('newdevour');
+
+				var hbsObject = {
+					devoured: updateDevour
+				};
+
+				$.ajax('/api/burgers/' + id, {
+					type: 'PUT',
+					data: hbsObject
+				}).then(function() {
+
+				})
+
+				$('.img').attr('src', $('.img').attr('data-animate'));
+				$('.img').attr('data-state', 'animate');
+
+				setTimeout(function() {
+					location.reload();
+				}, 1200)
+			})
+		})
+	</script>
+</html>

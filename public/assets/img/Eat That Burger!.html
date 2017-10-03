@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+		<!--<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />-->
+		<title>Eat That Burger!</title>
+		<!--<style type="text/css">
+			body {
+				background-color: yellow;
+			}
+		</style>-->
+		<link rel="stylesheet" type="text/css" href="./Eat That Burger!_files/style.css">
+		<script src="./Eat That Burger!_files/jquery.js.download"></script>
+		<!--<script src="/assets/js/cats.js"></script>-->
+	</head>
+	<body>
+		<h1>Eat Dat Burger</h1>
+
+<div class="image">
+	<img src="./Eat That Burger!_files/hamburger-animated-gif-4.gif" alt="Falling Burgers" style="width:150px; height:`150px">
+</div>
+
+<div class="box1" style="width:400px">
+	<ul>
+				<li>
+					Mixd Up Burger
+				
+					<button class="change-devour" data-id="1" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Big Mac
+				
+					<button class="change-devour" data-id="2" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Whopper
+				
+					<button class="change-devour" data-id="3" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Bad Daddys
+				
+					<button class="change-devour" data-id="4" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Cardiac Arrest
+				
+					<button class="change-devour" data-id="5" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Bacon Cheese Burger
+				
+					<button class="change-devour" data-id="6" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Hamburger
+				
+					<button class="change-devour" data-id="7" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Double Cheese Burger
+				
+					<button class="change-devour" data-id="8" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Mac and CheeseBurger
+				
+					<button class="change-devour" data-id="9" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Pluto Burger
+				
+					<button class="change-devour" data-id="10" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Big Ole Burger
+				
+					<button class="change-devour" data-id="11" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Bad Ass Burger
+				
+					<button class="change-devour" data-id="12" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					All Day burger
+				
+					<button class="change-devour" data-id="13" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Chili Cheese Burger
+				
+					<button class="change-devour" data-id="14" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Wild Side Burger
+				
+					<button class="change-devour" data-id="15" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Insane Burger
+				
+					<button class="change-devour" data-id="16" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+				<li>
+					Hot Fry Burger
+				
+					<button class="change-devour" data-id="17" data-newdevour="false">
+						Eat Dat Burger!
+					</button>
+				
+				</li>
+	</ul>
+</div>
+
+<div class="box2" style="width:400px">
+	<ul>
+	</ul>
+</div>
+
+<h1>Add A Burger</h1>
+
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="bu">Burger:</label>
+    <input type="text" id="burg" name="name">
+  </div>
+
+  <button type="submit">Add Burger</button>
+</form>
+
+	
+	<script type="text/javascript">
+		$(function() {
+			$('.create-form').on('submit', function(event) {
+			    event.preventDefault();
+
+			   var newBurger = {
+					name: $('#burg').val().trim(),
+			    }
+
+				$.ajax('/api/burgers', {
+					type: 'POST',
+					data: newBurger,
+					success: function() {
+						console.log('adding burger')
+					}
+				});
+				location.reload();
+			})
+
+			$('.change-devour').on('click', function(event) {
+				var id = $(this).data('id');
+				var updateDevour = $(this).data('newdevour');
+
+				var hbsObject = {
+					devoured: updateDevour
+				};
+
+				$.ajax('/api/burgers/' + id, {
+					type: 'PUT',
+					data: hbsObject
+				}).then(function() {
+
+				})
+				location.reload();
+			})
+		})
+	</script>
+
+</body></html>
