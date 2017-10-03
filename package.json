@@ -4,7 +4,8 @@
   "description": "Eat The Burger App",
   "main": "index.js",
   "scripts": {
-    "test": "start"
+    "test": "start",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
