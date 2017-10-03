@@ -2,7 +2,7 @@
   "name": "burger",
   "version": "0.0.1",
   "description": "Eat The Burger App",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "start",
     "start": "node server.js"
